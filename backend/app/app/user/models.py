@@ -11,12 +11,12 @@ class User(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     fullName = Column(String(255))
     email = Column(String(255), unique=True)
-    password = Column(String(50))
+    password = Column(String(300))
     current_booking = relationship("Booking", back_populates="customer_info")
 
-    def __init__(self, fullname, username, password, *args, **kwargs):
-       self.fullname = fullname
-       self.username = username
+    def __init__(self, fullName, email, password, *args, **kwargs):
+       self.fullName = fullName
+       self.email = email
        self.password = hashing.get_password_hash(password)
     
     def check_password(self, password):
